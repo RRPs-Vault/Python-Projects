@@ -1,0 +1,24 @@
+import keyword
+
+in_file = input("Enter a filename: ")
+source_file = open(in_file, 'r')
+
+num_of_key=0
+
+for line in source_file.readlines():
+    line = line.strip()
+    
+    if (line.startswith('#') or line.startswith("print")):
+        pass
+    else:
+        words_lst = line.split()
+    
+        for w in words_lst:
+            w = w.replace(':','')
+            if (keyword.iskeyword(w)):
+                print("keyword found:",w)
+                num_of_key += 1
+                        
+
+source_file.close()
+print("Num of Keywords: ", num_of_key)
